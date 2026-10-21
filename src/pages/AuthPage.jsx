@@ -1,5 +1,6 @@
 import Input from '../components/ui/Input.jsx';
 import Button from '../components/ui/Button.jsx';
+import SocialButton from '../components/ui/SocialButton.jsx';
 
 export default function AuthPage() {
   return (
@@ -8,7 +9,11 @@ export default function AuthPage() {
       <Input id="example-email" label="Email Address"
         name="email" type="email" placeholder="you@example.com" />
       <Button type="button">Sign In</Button>
-      <Button type="submit">Create Account</Button>
+      <div>
+        <SocialButton label="Continue with Google">G</SocialButton>
+        <SocialButton label="Continue with Apple">A</SocialButton>
+        <SocialButton label="Continue with Facebook">f</SocialButton>
+      </div>
     </main>
   );
 }
