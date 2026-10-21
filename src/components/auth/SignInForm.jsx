@@ -7,7 +7,7 @@ import SocialLogin from './SocialLogin.jsx';
 export default function SignInForm({ onSwitchForm }) {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
-  
+  const [isLoading, setIsLoading] = useState(false);
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData(previous => ({ ...previous, [name]: value }));
@@ -23,10 +23,16 @@ export default function SignInForm({ onSwitchForm }) {
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   }
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!validateForm()) return;
-    window.alert('Login demonstrativo validado. Nenhum dado foi enviado.');
+    setIsLoading(true);
+    try {
+      await new Promise(resolve => window.setTimeout(resolve, 900));
+      window.alert('Login demonstrativo realizado. Nenhum dado foi enviado.');
+    } finally {
+      setIsLoading(false);
+    }
   }
   return (
     <section className="flex w-[min(480px,calc(100vw-32px))] flex-col gap-[18px] rounded-3xl border border-[rgba(0,53,102,0.88)] bg-[rgba(0,29,61,0.67)] px-[30px] pb-[30px] pt-[34px] shadow-[0_24px_48px_-8px_rgba(0,0,0,0.38)] backdrop-blur-[11px]">
@@ -43,7 +49,7 @@ export default function SignInForm({ onSwitchForm }) {
           <label className="flex items-center gap-2"><input type="checkbox" /> Remember me</label>
           <button type="button" className="text-yellow-400">Forgot password?</button>
         </div>
-        <Button type="submit">Sign In</Button>
+        <Button type="submit" disabled={isLoading}>{isLoading ? 'Signing in...' : 'Sign In'}</Button>
       </form>
       <AuthDivider />
       <SocialLogin />
