@@ -5,7 +5,7 @@ import SignInForm from '../components/auth/SignInForm.jsx';
 import SignUpForm from '../components/auth/SignUpForm.jsx';
 
 export default function AuthPage() {
-  const [isSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(true);
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-navy-950 p-4 py-24">
       <BackgroundEffects />
@@ -15,10 +15,9 @@ export default function AuthPage() {
       </span>
       <div className="relative z-10">
         {isSignUp
-          ? <SignUpForm  />
-          : <SignInForm  />}
+          ? <SignUpForm onSwitchForm={() => setIsSignUp(false)} />
+          : <SignInForm onSwitchForm={() => setIsSignUp(true)} />}
       </div>
     </main>
   );
-
 }
