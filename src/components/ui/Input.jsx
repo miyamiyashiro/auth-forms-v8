@@ -8,11 +8,12 @@ export default function Input({
     return (
       <div>
         <label htmlFor={id}>{label}</label>
-        <input
-          id={id}
-          type={type}
-          name={name}
-          placeholder={placeholder}
+        <Input
+         id="email"
+        label="Email Address"
+        type="email"
+        name="email"
+        placeholder="you@example.com"
         />
       </div>
     );
