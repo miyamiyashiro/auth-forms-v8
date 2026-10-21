@@ -1,19 +1,14 @@
-import Input from '../components/ui/Input.jsx';
-import Button from '../components/ui/Button.jsx';
-import SocialButton from '../components/ui/SocialButton.jsx';
+import SignInForm from '../components/auth/SignInForm.jsx';
+import SignUpForm from '../components/auth/SignUpForm.jsx';
+
+const CURRENT_VIEW = 'signup';
 
 export default function AuthPage() {
+  const isSignUp = CURRENT_VIEW === 'signup';
+
   return (
     <main>
-      <h1>Authentication UI</h1>
-      <Input id="example-email" label="Email Address"
-        name="email" type="email" placeholder="you@example.com" />
-      <Button type="button">Sign In</Button>
-      <div>
-        <SocialButton label="Continue with Google">G</SocialButton>
-        <SocialButton label="Continue with Apple">A</SocialButton>
-        <SocialButton label="Continue with Facebook">f</SocialButton>
-      </div>
+      {isSignUp ? <SignUpForm /> : <SignInForm />}
     </main>
   );
 }
